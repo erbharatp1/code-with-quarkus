@@ -1,6 +1,3 @@
-
-greeting:
-  message: "hello"
 quarkus:
   devservices:
     log:
@@ -10,9 +7,9 @@ quarkus:
     database:
       generation: update
   datasource:
-    db-kind: PostgreSQL
+    db-kind: postgresql
     username: admin
     password: admin
-  jdbc:
-    url: jdbc:postgresql://localhost:5433/orders
-    max-size: 16
+    jdbc:
+      url: jdbc:postgresql://localhost:5433/admin
+      max-size: 16
