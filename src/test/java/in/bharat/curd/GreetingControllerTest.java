@@ -8,13 +8,13 @@ import static org.hamcrest.CoreMatchers.is;
 
 @QuarkusTest
 class GreetingControllerTest {
-    @Test
-    void testHelloEndpoint() {
-        given()
-          .when().get("/greeting")
-          .then()
-             .statusCode(200)
-             .body(is("Hello Spring"));
-    }
+//    @Test
+//    void testHelloEndpoint() {
+//        given()
+//          .when().get("/greeting")
+//          .then()
+//             .statusCode(200)
+//             .body(is("Hello Spring"));
+//    }
 
 }

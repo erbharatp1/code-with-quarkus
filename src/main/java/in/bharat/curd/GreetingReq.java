@@ -1,4 +1,4 @@
 package in.bharat.curd;
 
-public record GreetingReq(String greeting) {
+public record GreetingReq(Long id, String greeting) {
 }
