@@ -1,97 +1,113 @@
-# code-with-quarkus
+# Employee Management API (Quarkus)
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+This project is a RESTful API for managing employee information, built using the Quarkus framework.
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+## Features
 
-## Running the application in dev mode
+- **Full CRUD operations** for Employees.
+- **Jakarta REST (JAX-RS)** for RESTful endpoints.
+- **Hibernate ORM with Panache** for simplified data persistence.
+- **PostgreSQL** as the production-ready database.
+- **Lombok** for reducing boilerplate code.
+- **Spotless** with Google Java Format for consistent code style.
+- **JaCoCo** for test coverage reporting.
+- **Quarkus Dev Services** support for local development.
 
-You can run your application in dev mode that enables live coding using:
+## Prerequisites
 
-```shell script
+- **Java 17** (Managed via [mise](https://mise.jdx.sh/))
+- **Maven 3.9+**
+- **Docker** (for PostgreSQL)
+
+## Setup and Installation
+
+### 1. Database Configuration
+
+The application is configured to connect to a PostgreSQL instance on `localhost:5433`.
+
+```yaml
+# src/main/resources/application.yml
+quarkus:
+  datasource:
+    db-kind: postgresql
+    username: admin
+    password: admin
+    jdbc:
+      url: jdbc:postgresql://localhost:5433/admin
+```
+
+Ensure you have a PostgreSQL container running or use Quarkus Dev Services by setting `quarkus.devservices.enabled: true` in `application.yml`.
+
+### 2. Environment Setup (Optional - with mise)
+
+If you have `mise` installed, the tools will be automatically configured:
+
+```shell
+mise install
+```
+
+## Running the Application
+
+### Development Mode
+
+Run the application in dev mode with live coding enabled:
+
+```shell
 ./mvnw quarkus:dev
 ```
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
+### Packaging and Running
 
-## Packaging and running the application
+Package the application as a runnable JAR:
 
-The application can be packaged using:
-
-```shell script
+```shell
 ./mvnw package
 ```
 
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+Run the packaged application:
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
-
-If you want to build an _über-jar_, execute the following command:
-
-```shell script
-./mvnw package -Dquarkus.package.jar.type=uber-jar
+```shell
+java -jar target/quarkus-app/quarkus-run.jar
 ```
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
+## Testing and Quality
 
-## Creating a native executable
+### Running Tests
 
-You can create a native executable using:
+Execute unit and integration tests:
 
-```shell script
-./mvnw package -Dnative
+```shell
+./mvnw verify -DskipITs=false
 ```
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
+### Code Coverage
 
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
+After running the tests, the JaCoCo report is generated at:
+`target/site/jacoco/index.html`
+
+### Code Formatting
+
+Apply Google Java Format using Spotless:
+
+```shell
+./mvnw spotless:apply
 ```
 
-You can then execute your native executable with: `./target/code-with-quarkus-1.0.0-SNAPSHOT-runner`
+## API Endpoints
 
-If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
+The base path for employee operations is `/employee`.
 
-## Related Guides
+- `GET /employee/` - List all employees.
+- `POST /employee/create` - Create a new employee.
+- `PUT /employee/update/{id}` - Update an existing employee.
+- `DELETE /employee/delete/{id}` - Delete an employee.
 
-- REST ([guide](https://quarkus.io/guides/rest)): A Jakarta REST implementation utilizing build time processing and Vert.x. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on it.
-- REST Jackson ([guide](https://quarkus.io/guides/rest#json-serialisation)): Jackson serialization support for Quarkus REST. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on it
-- YAML Configuration ([guide](https://quarkus.io/guides/config-yaml)): Use YAML to configure your Quarkus application
-- Hibernate ORM with Panache ([guide](https://quarkus.io/guides/hibernate-orm-panache)): Simplify your persistence code for Hibernate ORM via the active record or the repository pattern
-- Quarkus Extension for Spring DI API ([guide](https://quarkus.io/guides/spring-di)): Define your dependency injection with Spring DI
-- Quarkus Extension for Spring Web API ([guide](https://quarkus.io/guides/spring-web)): Use Spring Web annotations to create your REST services
-- Quarkus Extension for Spring Data JPA API ([guide](https://quarkus.io/guides/spring-data-jpa)): Use Spring Data JPA annotations to create your data access layer
-- JDBC Driver - PostgreSQL ([guide](https://quarkus.io/guides/datasource)): Connect to the PostgreSQL database via JDBC
+## Technologies Used
 
-## Provided Code
-
-### YAML Config
-
-Configure your application with YAML
-
-[Related guide section...](https://quarkus.io/guides/config-reference#configuration-examples)
-
-The Quarkus application configuration is located in `src/main/resources/application.yml`.
-
-### Hibernate ORM
-
-Create your first JPA entity
-
-[Related guide section...](https://quarkus.io/guides/hibernate-orm)
-
-
-[Related Hibernate with Panache section...](https://quarkus.io/guides/hibernate-orm-panache)
-
-
-### REST
-
-Easily start your REST Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
-
-### Spring Web
-
-Spring, the Quarkus way! Start your REST Web Services with a Spring Controller.
-
-[Related guide section...](https://quarkus.io/guides/spring-web#greetingcontroller)
+- [Quarkus](https://quarkus.io/)
+- [Jakarta REST (JAX-RS)](https://jakarta.ee/specifications/restful-ws/)
+- [Hibernate Panache](https://quarkus.io/guides/hibernate-orm-panache)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Lombok](https://projectlombok.org/)
+- [Spotless](https://github.com/diffplug/spotless)
+- [JaCoCo](https://www.eclemmaia.org/jacoco/)
