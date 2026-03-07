@@ -1,2 +1,18 @@
+
 greeting:
   message: "hello"
+quarkus:
+  devservices:
+    log:
+      sql: true
+    enabled: false  # Add this line to use your own DB on port 5433
+  hibernate-orm:
+    database:
+      generation: update
+  datasource:
+    db-kind: PostgreSQL
+    username: admin
+    password: admin
+  jdbc:
+    url: jdbc:postgresql://localhost:5433/orders
+    max-size: 16

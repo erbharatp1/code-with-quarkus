@@ -1,4 +1,4 @@
-package in.bharat.curd;
+package in.bharat.curd.config;
 
 import io.smallrye.config.ConfigMapping;
 import io.smallrye.config.WithName;
