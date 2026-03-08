@@ -12,7 +12,6 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,9 +22,8 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class EmployeeResource {
 
-  @Inject
-  EmployeeRepository employeeRepository;
-   @Inject EmployeeMapper employeeMapper;
+  @Inject EmployeeRepository employeeRepository;
+  @Inject EmployeeMapper employeeMapper;
 
   @GET
   @Path("/")
