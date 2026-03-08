@@ -10,7 +10,7 @@ import org.junit.jupiter.api.*;
 
 @QuarkusTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class EmployeeControllerTest {
+class EmployeeResourceTest {
 
   private static Long employeeId;
 

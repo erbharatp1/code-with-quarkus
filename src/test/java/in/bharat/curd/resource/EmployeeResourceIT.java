@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 @QuarkusIntegrationTest
-class EmployeeControllerIT extends EmployeeControllerTest {
+class EmployeeResourceIT extends EmployeeResourceTest {
 
   @Test
   @Order(7)
