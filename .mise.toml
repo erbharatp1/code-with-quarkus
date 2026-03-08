@@ -4,7 +4,7 @@ maven = "3.8.8"
 
 [tasks.spotless]
 run = "./mvnw spotless:check -B"
-[tasks.run]
+[tasks.start]
 run = "./mvnw quarkus:dev"
 [tasks.build]
 run = "./mvnw package"

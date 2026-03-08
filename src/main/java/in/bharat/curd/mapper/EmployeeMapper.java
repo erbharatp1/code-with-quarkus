@@ -11,14 +11,14 @@ public class EmployeeMapper {
     if (employee == null) {
       return null;
     }
-    EmployeeRequest request = new EmployeeRequest();
-    request.setId(employee.getId());
-    request.setFirstName(employee.getFirstName());
-    request.setLastName(employee.getLastName());
-    request.setEmail(employee.getEmail());
-    request.setMobileNo(employee.getMobileNo());
-    request.setPassword(employee.getPassword());
-    return request;
+    return EmployeeRequest.builder()
+        .id(employee.getId())
+        .firstName(employee.getFirstName())
+        .lastName(employee.getLastName())
+        .email(employee.getEmail())
+        .mobileNo(employee.getMobileNo())
+        .password(employee.getPassword())
+        .build();
   }
 
   public void updateEmployeeFromRequest(Employee employee, EmployeeRequest request) {

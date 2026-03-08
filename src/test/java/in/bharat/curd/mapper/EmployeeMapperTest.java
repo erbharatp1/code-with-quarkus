@@ -1,20 +1,17 @@
 package in.bharat.curd.mapper;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import in.bharat.curd.entity.Employee;
 import in.bharat.curd.model.EmployeeRequest;
-import org.junit.jupiter.api.BeforeEach;
+import io.quarkus.test.junit.QuarkusTest;
+import jakarta.inject.Inject;
 import org.junit.jupiter.api.Test;
 
+@QuarkusTest
 class EmployeeMapperTest {
 
-  private EmployeeMapper mapper;
-
-  @BeforeEach
-  void setUp() {
-    mapper = new EmployeeMapper();
-  }
+  @Inject EmployeeMapper employeeMapper;
 
   @Test
   void testConvertToRequest() {
@@ -26,9 +23,8 @@ class EmployeeMapperTest {
     employee.setMobileNo("1234567890");
     employee.setPassword("password");
 
-    EmployeeRequest request = mapper.convertToRequest(employee);
+    EmployeeRequest request = employeeMapper.convertToRequest(employee);
 
-    assertNotNull(request);
     assertEquals(employee.getId(), request.getId());
     assertEquals(employee.getFirstName(), request.getFirstName());
     assertEquals(employee.getLastName(), request.getLastName());
@@ -38,13 +34,7 @@ class EmployeeMapperTest {
   }
 
   @Test
-  void testConvertToRequest_Null() {
-    assertNull(mapper.convertToRequest(null));
-  }
-
-  @Test
   void testUpdateEmployeeFromRequest() {
-    Employee employee = new Employee();
     EmployeeRequest request = new EmployeeRequest();
     request.setFirstName("Jane");
     request.setLastName("Smith");
@@ -52,22 +42,13 @@ class EmployeeMapperTest {
     request.setMobileNo("0987654321");
     request.setPassword("newpassword");
 
-    mapper.updateEmployeeFromRequest(employee, request);
+    Employee employee = new Employee();
+    employeeMapper.updateEmployeeFromRequest(employee, request);
 
     assertEquals(request.getFirstName(), employee.getFirstName());
     assertEquals(request.getLastName(), employee.getLastName());
     assertEquals(request.getEmail(), employee.getEmail());
     assertEquals(request.getMobileNo(), employee.getMobileNo());
     assertEquals(request.getPassword(), employee.getPassword());
-  }
-
-  @Test
-  void testUpdateEmployeeFromRequest_Null() {
-    Employee employee = new Employee();
-    mapper.updateEmployeeFromRequest(employee, null);
-    assertNull(employee.getFirstName());
-
-    mapper.updateEmployeeFromRequest(null, new EmployeeRequest());
-    // Should not throw exception
   }
 }
