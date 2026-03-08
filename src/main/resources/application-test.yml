@@ -1,0 +1,13 @@
+quarkus:
+  devservices:
+    enabled: true
+    image-name: "postgres:13"
+  datasource:
+    db-kind: postgresql
+    username: test
+    password: test
+    jdbc:
+      url: jdbc:postgresql://localhost:5432/test
+  hibernate-orm:
+    database:
+      generation: drop-and-create

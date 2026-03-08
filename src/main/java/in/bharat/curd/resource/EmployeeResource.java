@@ -5,6 +5,7 @@ import in.bharat.curd.mapper.EmployeeMapper;
 import in.bharat.curd.model.EmployeeRequest;
 import in.bharat.curd.model.MessageResponse;
 import in.bharat.curd.repository.EmployeeRepository;
+import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -22,8 +23,9 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class EmployeeResource {
 
-   EmployeeRepository employeeRepository;
-   EmployeeMapper employeeMapper;
+  @Inject
+  EmployeeRepository employeeRepository;
+   @Inject EmployeeMapper employeeMapper;
 
   @GET
   @Path("/")
