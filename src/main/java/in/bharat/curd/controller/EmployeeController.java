@@ -1,4 +1,4 @@
-package in.bharat.curd;
+package in.bharat.curd.controller;
 
 import in.bharat.curd.entity.Employee;
 import in.bharat.curd.mapper.EmployeeMapper;
@@ -12,16 +12,19 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Path("/employee")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @Slf4j
+@RequiredArgsConstructor
 public class EmployeeController {
 
-  @Inject EmployeeRepository employeeRepository;
-  @Inject EmployeeMapper employeeMapper;
+   EmployeeRepository employeeRepository;
+   EmployeeMapper employeeMapper;
 
   @GET
   @Path("/")

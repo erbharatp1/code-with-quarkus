@@ -19,5 +19,5 @@ quarkus:
     "country-cache":
      maximum-size: 1000
      expire-after-write: 24H
-     expire-after-access: 7D
+     expire-after-access: 7
      metrics-enabled: true
