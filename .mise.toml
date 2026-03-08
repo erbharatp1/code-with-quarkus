@@ -12,3 +12,7 @@ run = "./mvnw package"
 run = "./mvnw test"
 [tasks.lint]
 run = "./mvnw spotless:apply -B"
+[tasks.db-start]
+run = "docker run --name my-postgres -e POSTGRES_PASSWORD=admin -e POSTGRES_USER=admin -e POSTGRES_DB=admin -p 5433:5432 -d postgres:13"
+[tasks.db-stop]
+run = "docker stop my-postgres && docker rm my-postgres"
