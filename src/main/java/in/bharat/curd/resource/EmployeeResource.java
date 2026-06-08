@@ -17,6 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 
 @Path("/employee")
 @Slf4j
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 @RequiredArgsConstructor
 public class EmployeeResource {
 
