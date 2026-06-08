@@ -11,19 +11,20 @@ import java.time.Duration;
 public class CountryAdminService {
 
   @Inject
-  @CacheName("country-cache") // Inject the specific cache
+  @CacheName("country-cache") 
   Cache cache;
 
   public void refreshCountryCache() {
-    // Invalidate all entries in the cache
-    cache.invalidateAll().await().indefinitely();
+   
+    cache.invalidateAll().await()
+      .indefinitely();
   }
 
   public void updateCacheSettings() {
-    // If you need to dynamically change cache settings
+   
     if (cache instanceof CaffeineCache) {
       CaffeineCache caffeineCache = (CaffeineCache) cache;
-      // Change expiration to 12 hours
+      
       caffeineCache.setExpireAfterWrite(Duration.ofHours(12));
     }
   }
