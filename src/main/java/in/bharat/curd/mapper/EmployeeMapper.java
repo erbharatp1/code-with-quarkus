@@ -13,9 +13,12 @@ public class EmployeeMapper {
     }
     return EmployeeRequest.builder()
         .id(employee.getId())
+      
         .firstName(employee.getFirstName())
+      
         .lastName(employee.getLastName())
         .email(employee.getEmail())
+      
         .mobileNo(employee.getMobileNo())
         .password(employee.getPassword())
         .build();
@@ -26,7 +29,9 @@ public class EmployeeMapper {
       return;
     }
     employee.setFirstName(request.getFirstName());
+    
     employee.setLastName(request.getLastName());
+    
     employee.setEmail(request.getEmail());
     employee.setMobileNo(request.getMobileNo());
     employee.setPassword(request.getPassword());
