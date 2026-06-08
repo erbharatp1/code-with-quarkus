@@ -15,8 +15,7 @@ public class CountryAdminService {
   Cache cache;
   
   public void refreshCountryCache() {
-    cache.invalidateAll().await()
-      .indefinitely();
+    cache.invalidateAll().await() .indefinitely();
   }
 
   public void updateCacheSettings() {
