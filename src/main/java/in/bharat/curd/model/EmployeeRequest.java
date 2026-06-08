@@ -13,9 +13,14 @@ import lombok.Setter;
 @Setter
 public class EmployeeRequest {
   private Long id;
+  
   private String firstName;
+  
   private String lastName;
+  
   private String email;
+  
   private String mobileNo;
+  
   private String password;
 }
