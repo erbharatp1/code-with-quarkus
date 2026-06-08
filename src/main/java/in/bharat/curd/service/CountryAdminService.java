@@ -13,18 +13,15 @@ public class CountryAdminService {
   @Inject
   @CacheName("country-cache") 
   Cache cache;
-
+  
   public void refreshCountryCache() {
-   
     cache.invalidateAll().await()
       .indefinitely();
   }
 
   public void updateCacheSettings() {
-   
     if (cache instanceof CaffeineCache) {
       CaffeineCache caffeineCache = (CaffeineCache) cache;
-      
       caffeineCache.setExpireAfterWrite(Duration.ofHours(12));
     }
   }
